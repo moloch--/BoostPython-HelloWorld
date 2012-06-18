@@ -43,13 +43,11 @@ void keyword_args(std::string foo, std::string bar) {
 	std::cout << "Bar: " << bar << std::endl;
 }
 
-void default_args(std::string foo = "foo", std::string bar = "bar") {
+void default_args(std::string foo, std::string bar, std::string more) {
 	std::cout << "Foo: " << foo << std::endl;
 	std::cout << "Bar: " << bar << std::endl;
+	std::cout << "3rd: " << more << std::endl;
 }
-
-/* Macro to wrap keyword_args, the '1' and '2' are the min/max number of args */
-BOOST_PYTHON_FUNCTION_OVERLOADS(default_args_overloads, default_args, 0, 2);
 
 BOOST_PYTHON_MODULE(hello_cpp_world) {
 	using namespace boost::python;
@@ -58,7 +56,7 @@ BOOST_PYTHON_MODULE(hello_cpp_world) {
 	def("display_list", display_list);
 	def("create_dict", create_dict);
 	def("keyword_args", keyword_args, args("foo", "bar"));
-	def("default_args", default_args, default_args_overloads(args("foo", "bar"), "doc-string"));
+	def("default_args", default_args, (arg("foo") = "foo", arg("bar") = "bar", arg("more") = "more"), "doc-string");
 
 	/* It is required to have a function with the same name as the module */
 	def("hello_cpp_world", python_init);
