@@ -3,6 +3,9 @@
 *.lo
 *.o
 
+# Python byte code files
+*.pyc
+
 # Compiled Dynamic libraries
 *.so
 
