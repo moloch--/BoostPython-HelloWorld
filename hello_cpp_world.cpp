@@ -31,13 +31,25 @@ void display_list(unsigned int len, boost::python::list& ls) {
 	}
 }
 
-BOOST_PYTHON_MODULE(hello_cpp_world)
-{
+boost::python::dict create_dict() {
+	boost::python::dict d;
+    d["foo"] = "hello";
+    d["bar"] = "world";
+    return d;
+}
+
+void keyword_args(std::string foo, std::string bar) {
+	std::cout << "Foo: " << foo << std::endl;
+	std::cout << "Bar: " << bar << std::endl;
+}
+
+BOOST_PYTHON_MODULE(hello_cpp_world) {
 	using namespace boost::python;
 	def("greet", greet);
 	def("display_str", display_str);
 	def("display_list", display_list);
-
+	def("create_dict", create_dict);
+	def("keyword_args", keyword_args, args("foo", "bar"));
 	/* It is required to have a function with the same name as the module */
 	def("hello_cpp_world", python_init);
 }
