@@ -33,9 +33,9 @@ void display_list(unsigned int len, boost::python::list& ls) {
 
 boost::python::dict create_dict() {
 	boost::python::dict d;
-    d["foo"] = "hello";
-    d["bar"] = "world";
-    return d;
+	d["foo"] = "hello";
+	d["bar"] = "world";
+	return d;
 }
 
 void keyword_args(std::string foo, std::string bar) {
